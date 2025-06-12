@@ -1,5 +1,10 @@
-//get computer and human's choice
+//select elements
+const humanScoreEl = document.querySelector('#humanScore');
+const computerScoreEl = document.querySelector('#computerScore');
+const humanChoiceEl = document.querySelector('#humanChoice');
+const computerChoiceEl = document.querySelector('#computerChoice');
 
+//get computer and human's choice
 const getComputerChoice = function () {
 	const choice = Math.trunc(Math.random() * 3);
 
@@ -48,7 +53,7 @@ const playRound = function (humanChoice, computerChoice) {
 	} else return 0;
 };
 
-const playGame = function () {
+/*const playGame = function () {
 	for (i = 0; i < 5; i++) {
 		let roundOutCome = playRound(getHumanChoice(), getComputerChoice());
 
@@ -84,6 +89,6 @@ const playGame = function () {
 	} else if (humanScore > computerScore) {
 		console.log(`You won ${humanScore}-${computerScore}`);
 	} else console.log(`Computer won ${computerScore}-${humanScore}`);
-};
+};*/
 
 //playGame();

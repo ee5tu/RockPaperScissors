@@ -2,31 +2,74 @@
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+	background-color: #9cd4ff;
+}
+
+.box {
+	background-color: white;
+	border-radius: 1.2em;
+	border: black solid 2px;
+}
+
+button {
+	font-size: medium;
+	background-color: #c2c2c2;
+	border: black solid 2px;
+	border-radius: 1em;
+	padding: 2%;
+}
+
 .siteContainer {
 	margin: auto;
-	width: 80%;
+	width: 65%;
 }
 
 .header {
 	text-align: center;
 }
 
-.score {
+.centerScore {
 	display: flex;
 	justify-content: center;
 }
 
-.score > div > * {
+.score {
+	text-align: center;
+	display: inline;
+	padding: 1.5%;
+	margin: 2%;
+	font-size: large;
+	border-radius: 100%;
+}
+
+.score > * {
 	display: inline;
 }
 
 .gameContainer {
 	display: flex;
 	justify-content: center;
+	gap: 2%;
 }
 
 .player {
 	flex: 1;
-	gap: 1%;
 	text-align: center;
+	padding: 2%;
+}
+
+.playerHeader {
+	font-weight: bold;
+	font-size: large;
+}
+
+.choice {
+	font-size: xxx-large;
+	margin: 10%;
+}
+
+.displayMsg {
+	margin-top: 2%;
+	padding: 2%;
 }
