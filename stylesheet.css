@@ -1,0 +1,32 @@
+* {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.siteContainer {
+	margin: auto;
+	width: 80%;
+}
+
+.header {
+	text-align: center;
+}
+
+.score {
+	display: flex;
+	justify-content: center;
+}
+
+.score > div > * {
+	display: inline;
+}
+
+.gameContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.player {
+	flex: 1;
+	gap: 1%;
+	text-align: center;
+}

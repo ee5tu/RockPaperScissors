@@ -86,4 +86,4 @@ const playGame = function () {
 	} else console.log(`Computer won ${computerScore}-${humanScore}`);
 };
 
-playGame();
+//playGame();
