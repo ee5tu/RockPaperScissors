@@ -3,6 +3,16 @@ const humanScoreEl = document.querySelector('#humanScore');
 const computerScoreEl = document.querySelector('#computerScore');
 const humanChoiceEl = document.querySelector('#humanChoice');
 const computerChoiceEl = document.querySelector('#computerChoice');
+const choiceButtons = document.querySelectorAll('button');
+const computerMsgEl = document.querySelector('.computerMsg');
+
+//scores
+let computerScore = 0;
+let humanScore = 0;
+
+//win messages
+const computerW = 'Computer wins!';
+const humanW = 'You win!';
 
 //get computer and human's choice
 const getComputerChoice = function () {
@@ -17,45 +27,65 @@ const getComputerChoice = function () {
 	}
 };
 
-const getHumanChoice = function () {
-	const choice = prompt(
-		'Enter your choice of Rock, Paper or Scissors: '
-	).toLowerCase();
-
-	return choice;
-};
-
-//scores
-let computerScore = 0;
-let humanScore = 0;
-
-//win messages
-const computerW = 'Computer wins!';
-const humanW = 'You win!';
+choiceButtons.forEach(el => {
+	el.addEventListener('click', e => {
+		playRound(e.target.id, getComputerChoice());
+	});
+});
 
 //play mechanic
 
 const playRound = function (humanChoice, computerChoice) {
+	if (computerChoice === 'rock') {
+		computerChoiceEl.textContent = '🪨';
+	} else if (computerChoice === 'paper') {
+		computerChoiceEl.textContent = '🧻';
+	} else if (computerChoice === 'scissors') {
+		computerChoiceEl.textContent = '✂️';
+	}
+
+	//tie
 	if (humanChoice === computerChoice) {
+		computerMsgEl.textContent = `Computer chose ${computerChoice}`;
 		return 'TIE';
+
+		//rock
 	} else if (humanChoice === 'rock') {
 		if (computerChoice === 'paper') {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
 			return computerW;
-		} else return humanW;
+		} else {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
+			return humanW;
+		}
+
+		//paper
 	} else if (humanChoice === 'paper') {
 		if (computerChoice === 'scissors') {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
 			return computerW;
-		} else return humanW;
+		} else {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
+			return humanW;
+		}
+
+		//scissors
 	} else if (humanChoice === 'scissors') {
 		if (computerChoice === 'rock') {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
 			return computerW;
-		} else return humanW;
+		} else {
+			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
+			return humanW;
+		}
+
+		//error
 	} else return 0;
 };
 
 /*const playGame = function () {
 	for (i = 0; i < 5; i++) {
-		let roundOutCome = playRound(getHumanChoice(), getComputerChoice());
+		let roundOutCome = playRound(getComputerChoice());
 
 		if (roundOutCome === 0) {
 			console.log('Something went wrong');
