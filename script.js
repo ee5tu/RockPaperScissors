@@ -5,6 +5,7 @@ const humanChoiceEl = document.querySelector('#humanChoice');
 const computerChoiceEl = document.querySelector('#computerChoice');
 const choiceButtons = document.querySelectorAll('button');
 const computerMsgEl = document.querySelector('.computerMsg');
+const displayOutcome = document.querySelector('#msg');
 
 //scores
 let computerScore = 0;
@@ -36,6 +37,18 @@ choiceButtons.forEach(el => {
 //play mechanic
 
 const playRound = function (humanChoice, computerChoice) {
+	let outcome = '';
+
+	//display human choice
+	if (humanChoice === 'rock') {
+		humanChoiceEl.textContent = '🪨';
+	} else if (humanChoice === 'paper') {
+		humanChoiceEl.textContent = '🧻';
+	} else if (humanChoice === 'scissors') {
+		humanChoiceEl.textContent = '✂️';
+	}
+
+	//display computers choice
 	if (computerChoice === 'rock') {
 		computerChoiceEl.textContent = '🪨';
 	} else if (computerChoice === 'paper') {
@@ -44,43 +57,48 @@ const playRound = function (humanChoice, computerChoice) {
 		computerChoiceEl.textContent = '✂️';
 	}
 
+	computerMsgEl.textContent = `Computer chose ${computerChoice}`;
+
 	//tie
 	if (humanChoice === computerChoice) {
-		computerMsgEl.textContent = `Computer chose ${computerChoice}`;
 		return 'TIE';
 
 		//rock
 	} else if (humanChoice === 'rock') {
 		if (computerChoice === 'paper') {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return computerW;
+			outcome = 0;
 		} else {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return humanW;
+			outcome = 1;
 		}
 
 		//paper
 	} else if (humanChoice === 'paper') {
 		if (computerChoice === 'scissors') {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return computerW;
+			outcome = 0;
 		} else {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return humanW;
+			outcome = 1;
 		}
 
 		//scissors
 	} else if (humanChoice === 'scissors') {
 		if (computerChoice === 'rock') {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return computerW;
+			outcome = 0;
 		} else {
-			computerMsgEl.textContent = `Computer chose ${computerChoice}`;
-			return humanW;
+			outcome = 1;
 		}
 
 		//error
 	} else return 0;
+
+	console.log(outcome);
+
+	if (outcome) {
+		displayOutcome.textContent = 'You won!';
+	} else {
+		displayOutcome.textContent = 'Computer won!';
+	}
+
+	return outcome;
 };
 
 /*const playGame = function () {
