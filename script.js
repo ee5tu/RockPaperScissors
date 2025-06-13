@@ -6,6 +6,7 @@ const computerChoiceEl = document.querySelector('#computerChoice');
 const choiceButtons = document.querySelectorAll('button');
 const computerMsgEl = document.querySelector('.computerMsg');
 const displayOutcome = document.querySelector('#msg');
+const playAgainBtn = document.querySelector('#playAgain');
 
 //scores
 let computerScore = 0;
@@ -61,7 +62,7 @@ const playRound = function (humanChoice, computerChoice) {
 
 	//tie
 	if (humanChoice === computerChoice) {
-		return 'TIE';
+		outcome = 'TIE';
 
 		//rock
 	} else if (humanChoice === 'rock') {
@@ -90,53 +91,35 @@ const playRound = function (humanChoice, computerChoice) {
 		//error
 	} else return 0;
 
-	console.log(outcome);
-
-	if (outcome) {
+	if (outcome === 'TIE') {
+		displayOutcome.textContent = 'Round ended in a tie.';
+	} else if (outcome) {
 		displayOutcome.textContent = 'You won!';
+
+		humanScore++;
+		humanScoreEl.textContent = humanScore;
 	} else {
-		displayOutcome.textContent = 'Computer won!';
+		displayOutcome.textContent = 'Computer won.';
+
+		computerScore++;
+		computerScoreEl.textContent = computerScore;
 	}
 
-	return outcome;
+	//game win
+	if (humanScore >= 5) {
+		choiceButtons.forEach(el => {
+			el.disabled = true;
+		});
+
+		displayOutcome.textContent = `You won the game ${humanScore}-${computerScore}!`;
+
+		playAgainBtn.style.display = 'inline-block';
+	} else if (computerScore >= 5) {
+		choiceButtons.forEach(el => {
+			el.disabled = true;
+		});
+
+		displayOutcome.textContent = `Computer won the game ${computerScore}-${humanScore}.`;
+		playAgainBtn.style.display = 'inline-block';
+	}
 };
-
-/*const playGame = function () {
-	for (i = 0; i < 5; i++) {
-		let roundOutCome = playRound(getComputerChoice());
-
-		if (roundOutCome === 0) {
-			console.log('Something went wrong');
-			break;
-		} else if (roundOutCome === computerW) {
-			console.log(`Round 0${i + 1}: ${roundOutCome}`);
-			computerScore++;
-
-			console.log(
-				`You: ${humanScore} points, Computer: ${computerScore} points`
-			);
-		} else if (roundOutCome === humanW) {
-			console.log(`Round 0${i + 1}: ${roundOutCome}`);
-			humanScore++;
-
-			console.log(
-				`You: ${humanScore} points, Computer: ${computerScore} points`
-			);
-		} else {
-			console.log(`Round 0${i + 1}: ${roundOutCome}`);
-
-			console.log(
-				`You: ${humanScore} points, Computer: ${computerScore} points`
-			);
-		}
-
-		console.log(' ');
-	}
-	if (humanScore === computerScore) {
-		console.log(`Game ended in a tie ${humanScore}-${computerScore}`);
-	} else if (humanScore > computerScore) {
-		console.log(`You won ${humanScore}-${computerScore}`);
-	} else console.log(`Computer won ${computerScore}-${humanScore}`);
-};*/
-
-//playGame();
