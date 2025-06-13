@@ -3,7 +3,7 @@ const humanScoreEl = document.querySelector('#humanScore');
 const computerScoreEl = document.querySelector('#computerScore');
 const humanChoiceEl = document.querySelector('#humanChoice');
 const computerChoiceEl = document.querySelector('#computerChoice');
-const choiceButtons = document.querySelectorAll('button');
+const choiceButtons = document.querySelectorAll('button:not(#playAgain');
 const computerMsgEl = document.querySelector('.computerMsg');
 const displayOutcome = document.querySelector('#msg');
 const playAgainBtn = document.querySelector('#playAgain');
@@ -108,7 +108,7 @@ const playRound = function (humanChoice, computerChoice) {
 	//game win
 	if (humanScore >= 5) {
 		choiceButtons.forEach(el => {
-			el.disabled = true;
+			el.style.display = 'none';
 		});
 
 		displayOutcome.textContent = `You won the game ${humanScore}-${computerScore}!`;
@@ -116,10 +116,33 @@ const playRound = function (humanChoice, computerChoice) {
 		playAgainBtn.style.display = 'inline-block';
 	} else if (computerScore >= 5) {
 		choiceButtons.forEach(el => {
-			el.disabled = true;
+			el.style.display = 'none';
 		});
 
 		displayOutcome.textContent = `Computer won the game ${computerScore}-${humanScore}.`;
 		playAgainBtn.style.display = 'inline-block';
 	}
 };
+
+//reset game
+playAgainBtn.addEventListener('click', () => {
+	humanScore = 0;
+	humanScoreEl.textContent = 0;
+
+	computerScore = 0;
+	computerScoreEl.textContent = 0;
+
+	choiceButtons.forEach(el => {
+		el.style.display = 'inline-block';
+	});
+
+	playAgainBtn.style.display = 'none';
+
+	humanChoiceEl.textContent = '🙉';
+	computerChoiceEl.textContent = '🤖';
+
+	displayOutcome.textContent =
+		'Make you first choice of Rock, Paper or Scissors';
+
+	computerMsgEl.textContent = '';
+});
